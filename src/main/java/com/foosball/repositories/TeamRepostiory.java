@@ -1,0 +1,14 @@
+package com.foosball.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.foosball.models.Team;
+
+public interface TeamRepostiory extends JpaRepository<Team, Long>{
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//CUSTOM QUERIES REPOSITORY METHODS
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	Team findByName(String name);
+}
