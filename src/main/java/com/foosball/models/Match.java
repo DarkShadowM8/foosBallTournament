@@ -1,5 +1,7 @@
 package com.foosball.models;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +19,7 @@ import com.foosball.enumerations.Result;
 
 @Entity
 @Table(name = "Matches")
-public class Match {
+public class Match implements Serializable{
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //										FIELDS
@@ -45,6 +47,10 @@ public class Match {
 	
 	private String toss;
 	private String winner;
+	
+	@ManyToOne
+	@JoinColumn(name = "tournament", referencedColumnName = "id")
+	private Tournament tournament;
 	
 	private String location;
 	
@@ -152,6 +158,15 @@ public class Match {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+	public Tournament getTournament() {
+		return tournament;
+	}
+
+	public void setTournament(Tournament tournament) {
+		this.tournament = tournament;
+	}
+	
 	
 }
 

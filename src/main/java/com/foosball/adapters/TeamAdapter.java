@@ -7,6 +7,9 @@ public class TeamAdapter {
 //
 ////	CaptainAdapter captainAdapter = new CaptainAdapter();
 //	
+	
+	public TournamentAdapter tournamentAdapter = new TournamentAdapter();
+	
 	public Team _toDao (TeamDto teamDto) {	
 		Team team = new Team();
 		return _toDaoUpdate(team, teamDto);
@@ -14,7 +17,6 @@ public class TeamAdapter {
 	
 	public Team _toDaoUpdate(Team team, TeamDto teamDto) {
 		team.setName(teamDto.getName());
-		
 		return team;
 	}
 	

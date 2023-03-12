@@ -19,7 +19,9 @@ import com.foosball.modelsDTO.PlayerDto;
 import com.foosball.modelsDTO.TeamDto;
 //import com.foosball.repositories.CaptainRepository;
 import com.foosball.repositories.PlayerRepository;
+import com.foosball.repositories.PointsTableRepository;
 import com.foosball.repositories.TeamRepostiory;
+import com.foosball.repositories.TournamentRepository;
 import com.foosball.services.interfaces.PlayerService;
 //import com.foosball.services.interfaces.CaptainService;
 import com.foosball.services.interfaces.TeamService;
@@ -32,20 +34,25 @@ public class TeamServiceImpl implements TeamService{
 //									AUTOWIRED BEANS
 //////////////////////////////////////////////////////////////////////////////////////////////////
 	@Autowired
-	public TeamRepostiory teamRepo;
+	private  TeamRepostiory teamRepo;
 	
 	@Autowired
-	public PlayerRepository playerRepo;
+	private  PlayerRepository playerRepo;
 	
 	@Autowired
-	public PlayerService playerService;
+	private  PlayerService playerService;
 	
+	@Autowired
+	private  TournamentRepository tournamentRepo;
+	
+	@Autowired
+	private  PointsTableRepository pointsTableRepo;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //										ADAPTERS
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public TeamAdapter teamAdapter = new TeamAdapter();
-	public PlayerAdapter playerAdapter = new PlayerAdapter();
+	private  TeamAdapter teamAdapter = new TeamAdapter();
+	private  PlayerAdapter playerAdapter = new PlayerAdapter();
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //							TEAM BASIC CRUD ABSTRACT METHOD'S IMPLEMENTATION
@@ -85,6 +92,20 @@ public class TeamServiceImpl implements TeamService{
 		Optional<Team> team = teamRepo.findById(id);
 		if (team.isPresent()) {
 			teamAdapter._toDaoUpdate(team.get(), teamDto);
+			
+			Optional<Tournament> tournament = tournamentRepo.findById(teamDto.getTournament());
+			
+			if (tournament.isEmpty()) {
+				return "Team id is not correct!!!";
+			}
+			
+			PointsTable pointsTable = new PointsTable();
+			pointsTable.setTeam(team.get());
+			pointsTable.setTournament(tournament.get());
+			pointsTableRepo.save(pointsTable);
+			
+			team.get().setTournament(tournament.get());
+			
 			return "Team with id: " + id + " updated Successfully!!!" ;
 		}
 		return "Team with id: " + id + " not Found!!!";

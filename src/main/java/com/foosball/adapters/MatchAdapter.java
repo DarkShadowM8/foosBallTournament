@@ -7,7 +7,7 @@ import com.foosball.modelsDTO.MatchGetDto;
 public class MatchAdapter {
 	
 	TeamAdapter teamAdapter = new TeamAdapter();
-	
+	TournamentAdapter tournamentAdapter = new TournamentAdapter();
 	
 	public MatchGetDto _toDto(Match match) {
 		MatchGetDto matchDto = new MatchGetDto();
@@ -20,6 +20,7 @@ public class MatchAdapter {
 		matchDto.setToss(match.getToss());
 		matchDto.setWinner(match.getWinner());
 		matchDto.setLocation(match.getLocation());
+		matchDto.setTournamentDto(tournamentAdapter.convertDAOtoDTO(match.getTournament()));
 		
 		return matchDto;
 	}

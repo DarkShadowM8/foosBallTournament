@@ -1,5 +1,7 @@
 package com.foosball.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,7 +13,7 @@ import javax.persistence.OneToOne;
 import com.foosball.enumerations.PlayStyle;
 
 @Entity
-public class PlayerSkillCard {
+public class PlayerSkillCard implements Serializable{
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //											FIELDS

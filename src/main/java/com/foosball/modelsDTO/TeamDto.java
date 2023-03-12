@@ -3,7 +3,12 @@ package com.foosball.modelsDTO;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 import com.foosball.models.Player;
+import com.foosball.models.Tournament;
 
 public class TeamDto {
 
@@ -13,6 +18,8 @@ public class TeamDto {
 
 	private Long id;
 	private String name;
+	
+	private Long tournament;
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //										GETTERS & SETTERS
@@ -35,7 +42,15 @@ public class TeamDto {
 	@Override
 	public String toString() {
 		return "TeamDto [id=" + id + ", name=" + name + "]";
-	}	
+	}
+	public Long getTournament() {
+		return tournament;
+	}
+	public void setTournament(Long tournament) {
+		this.tournament = tournament;
+	}
+	
+	
 }
 //private Integer captainID;
 //public Integer getCaptain() {

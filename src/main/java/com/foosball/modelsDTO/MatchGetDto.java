@@ -15,6 +15,7 @@ public class MatchGetDto {
 	private String toss;
 	private String winner;
 	private String location;
+	private TournamentDto tournamentDto;
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //											GETTERS & SETTERS
@@ -74,11 +75,18 @@ public class MatchGetDto {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	public TournamentDto getTournamentDto() {
+		return tournamentDto;
+	}
+	public void setTournamentDto(TournamentDto tournamentDto) {
+		this.tournamentDto = tournamentDto;
+	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //												ToString Method
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+	
 	
 	public String toString() {
 		return "MatchGetDto [id=" + id + ", name=" + name + ", team_1=" + team_1 + ", team_2=" + team_2

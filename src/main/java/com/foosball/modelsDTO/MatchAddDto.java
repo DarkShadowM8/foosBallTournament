@@ -8,6 +8,7 @@ public class MatchAddDto {
 
 	private Integer team_1_Id;
 	private Integer team_2_Id;
+	private Long tournamentDto;
 	private String location;
 	
 	
@@ -35,9 +36,16 @@ public class MatchAddDto {
 	}
 	
 	
+	public Long getTournamentDto() {
+		return tournamentDto;
+	}
+	public void setTournamentDto(Long tournamentDto) {
+		this.tournamentDto = tournamentDto;
+	}
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //												ToSTRING Method
 //////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	
 	@Override
 	public String toString() {

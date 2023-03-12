@@ -18,7 +18,7 @@ import com.foosball.services.interfaces.TeamService;
 public class TeamController {
 
 	@Autowired
-	TeamService teamService;
+	private TeamService teamService;
 
 	@PostMapping("/team/add")
 	public ResponseEntity<Object> addData(@RequestBody TeamDto teamDto) {

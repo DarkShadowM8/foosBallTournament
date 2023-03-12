@@ -1,5 +1,7 @@
 package com.foosball.models;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +19,7 @@ import com.foosball.enumerations.PlayerStatus;
 
 @Entity
 @Table(name = "players")
-public class Player {
+public class Player implements Serializable{
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //										Fields
