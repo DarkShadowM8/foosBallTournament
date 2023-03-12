@@ -25,5 +25,10 @@ public interface TeamService {
 	
 	public PlayerDto getTeamCaptain(long id);
 	public List<PlayerDto> getAllCaptain();
-	
+
+/*/////////////////////////////////////////////////////////////////////
+						Team Player Abstract Methods
+/////////////////////////////////////////////////////////////////////*/
+	public List<PlayerDto> getAllPlayersWithNoTeam();
+	public List<PlayerDto> getAllPlayerOfTheTeam(long teamId);
 }

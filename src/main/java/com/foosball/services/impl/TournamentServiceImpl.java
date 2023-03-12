@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.foosball.adapters.TournamentAdapter;
 import com.foosball.models.Tournament;
@@ -11,6 +12,7 @@ import com.foosball.modelsDTO.TournamentDto;
 import com.foosball.repositories.TournamentRepository;
 import com.foosball.services.interfaces.TournamentService;
 
+@Service
 public class TournamentServiceImpl implements TournamentService{
 	@Autowired
 	private TournamentRepository tournamentRepository;

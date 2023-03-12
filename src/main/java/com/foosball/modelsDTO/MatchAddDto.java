@@ -6,8 +6,8 @@ public class MatchAddDto {
 //												ATTRIBUTES
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-	private Integer team_1_Id;
-	private Integer team_2_Id;
+	private Long team_1_Id;
+	private Long team_2_Id;
 	private Long tournamentDto;
 	private String location;
 	
@@ -16,16 +16,16 @@ public class MatchAddDto {
 //												GETTERS & SETTERS
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public Integer getTeam_1_Id() {
+	public Long getTeam_1_Id() {
 		return team_1_Id;
 	}
-	public void setTeam_1_Id(Integer team_1_Id) {
+	public void setTeam_1_Id(Long team_1_Id) {
 		this.team_1_Id = team_1_Id;
 	}
-	public Integer getTeam_2_Id() {
+	public Long getTeam_2_Id() {
 		return team_2_Id;
 	}
-	public void setTeam_2_Id(Integer team_2_Id) {
+	public void setTeam_2_Id(Long team_2_Id) {
 		this.team_2_Id = team_2_Id;
 	}
 	public String getLocation() {

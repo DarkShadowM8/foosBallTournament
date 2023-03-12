@@ -20,5 +20,8 @@ public interface PlayerRepository extends JpaRepository<Player, Long>{
 	List<Player> findByCnic(Integer cnic);
 	List<Player> findByStatus(PlayerStatus status);
 	List<Player> findByTeam(Team team);
+	List<Player> findByTeamName(String teamName);
+	List<Player> findByTeamId(Long teamId);
 	List<Player> findByStatusAndTeam_Name(PlayerStatus status, String teamName);
+	List<Player> findByTeamIsNullAndStatus(PlayerStatus status);
 }

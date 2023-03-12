@@ -19,8 +19,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Tournament implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long tournamentID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
 	@Column
 	private String tournamentName;
@@ -40,11 +40,11 @@ public class Tournament implements Serializable{
 	private Date tournamentEndDate;
 
 	public Long getTournamentID() {
-		return tournamentID;
+		return id;
 	}
 
 	public void setTournamentID(Long tournamentID) {
-		this.tournamentID = tournamentID;
+		this.id = tournamentID;
 	}
 
 	public String getTournamentName() {

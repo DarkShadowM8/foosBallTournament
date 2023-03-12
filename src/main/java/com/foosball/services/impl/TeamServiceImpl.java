@@ -142,6 +142,21 @@ public class TeamServiceImpl implements TeamService{
 	
 	public List<PlayerDto> getAllCaptain() {
 		List<Player> playerList  = playerRepo.findByStatus(PlayerStatus.Captain);
+		List<PlayerDto> playerlistDto = new ArrayList<>();
+		
+		for (Player player : playerList) {
+			playerlistDto.add(playerAdapter._toDto(player));
+		}
+		
+		return playerlistDto;
+	}
+	
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//				TEAM Players ABSTRACT METHOD'S IMPLEMENTATION
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+	public List<PlayerDto> getAllPlayersWithNoTeam() {
+		List<Player> playerList  = playerRepo.findByTeamIsNullAndStatus(PlayerStatus.Player);
 		List<PlayerDto> listDto = new ArrayList<>();
 		
 		for (Player player : playerList) {
@@ -151,8 +166,20 @@ public class TeamServiceImpl implements TeamService{
 		return listDto;
 	}
 	
-	
-	
+	public List<PlayerDto> getAllPlayerOfTheTeam(long teamId){
+		Optional<Team> team = teamRepo.findById(teamId);
+		if (team.isPresent()) {
+			List<Player> playerList  = playerRepo.findByTeamId(teamId);
+			List<PlayerDto> playerlistDto = new ArrayList<>();
+			
+			for (Player player : playerList) {
+				playerlistDto.add(playerAdapter._toDto(player));
+			}
+			return playerlistDto;
+		}
+		
+		return null;
+	}
 }
 /*	
 	@Autowired

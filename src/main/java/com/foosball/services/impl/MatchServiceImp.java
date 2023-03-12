@@ -23,6 +23,7 @@ import com.foosball.repositories.PointsTableRepository;
 import com.foosball.repositories.TeamRepostiory;
 import com.foosball.repositories.TournamentRepository;
 import com.foosball.services.interfaces.MatchService;
+import com.foosball.services.interfaces.PointsTableService;
 import com.foosball.services.interfaces.TeamService;
 
 @Service
@@ -41,10 +42,13 @@ public class MatchServiceImp implements MatchService {
 	private  TournamentRepository tournamentRepo;
 	
 	@Autowired
+	private  PointsTableRepository pointsTableRepo;
+	
+	@Autowired
 	private  TeamService teamService;
 	
 	@Autowired
-	private  PointsTableRepository pointsTableRepo;
+	private PointsTableService pointsTableService;
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //									ADAPTERS
@@ -155,34 +159,16 @@ public class MatchServiceImp implements MatchService {
 			if (match.get().getTeam_1().getName().equals(teamName)) {
 				match.get().setWinner(Result.team1);
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//																	NEED OPTIMIZAION CODE REPITATION
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				PointsTable team_1_points = pointsTableRepo.findByTournamentIdAndTeamName(match.get().getTeam_1().getTournament().getTournamentID(), match.get().getTeam_1().getName());
-				team_1_points.setToatlPlayedMatch(team_1_points.getToatlPlayedMatch() + 1);
-				team_1_points.setWin(team_1_points.getWin() + 1);
-				team_1_points.setPoints(team_1_points.getPoints() + match.get().getRoundsWinByTeam_1() * 2);
 
-				PointsTable team_2_points = pointsTableRepo.findByTournamentIdAndTeamName(match.get().getTeam_2().getTournament().getTournamentID(), match.get().getTeam_2().getName());
-				team_2_points.setToatlPlayedMatch(team_2_points.getToatlPlayedMatch() + 1);
-				team_2_points.setWin(team_2_points.getLoss() + 1);
-				team_2_points.setPoints(team_2_points.getPoints() + match.get().getRoundsWinByTeam_1());
+				//POINTS TABLE UPDATE
+				pointsTableService.pointsUpdate(match.get().getTeam_1(), match.get().getTeam_2(), match.get().getTeam_1().getTournament().getTournamentID(), match.get());
 				
 			}
 			else if(match.get().getTeam_2().getName().equals(teamName)){
 				match.get().setWinner(Result.team2);
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//																	NEED OPTIMIZAION CODE REPITATION
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////			
-				PointsTable team_2_points = pointsTableRepo.findByTournamentIdAndTeamName(match.get().getTeam_2().getTournament().getTournamentID(), match.get().getTeam_2().getName());
-				team_2_points.setToatlPlayedMatch(team_2_points.getToatlPlayedMatch() + 1);
-				team_2_points.setWin(team_2_points.getWin() + 1);
-				team_2_points.setPoints(team_2_points.getPoints() + match.get().getRoundsWinByTeam_1() * 2);
-				
-				PointsTable team_1_points = pointsTableRepo.findByTournamentIdAndTeamName(match.get().getTeam_1().getTournament().getTournamentID(), match.get().getTeam_1().getName());
-				team_1_points.setToatlPlayedMatch(team_1_points.getToatlPlayedMatch() + 1);
-				team_1_points.setWin(team_1_points.getLoss() + 1);
-				team_1_points.setPoints(team_1_points.getPoints() + match.get().getRoundsWinByTeam_1());
+							
+				//POINTS TABLE UPDATE
+				pointsTableService.pointsUpdate(match.get().getTeam_2(), match.get().getTeam_1(), match.get().getTeam_2().getTournament().getTournamentID(), match.get());
 			}
 			else {
 				return "Team name is not Correct!!!";
